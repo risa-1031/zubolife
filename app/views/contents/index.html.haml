@@ -3,6 +3,9 @@
   = form.submit "検索", class: 'search-btn'
 
 .wrapper
-  = render "top"
-  = render "main"
-  = render "bottom"
+  - if current_user(:name)
+    = render "top"
+    = render "main"
+    = render "bottom"
+  - else
+    = render "top"
