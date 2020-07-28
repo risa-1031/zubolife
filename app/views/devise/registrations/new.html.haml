@@ -1,21 +1,28 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+.sign-up-page
+  %h2 登録してね
+  = form_with model: @user do |form|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      .field-form
+        = form.label :name
+        %br/
+        = form.text_field :name, autofocus: true, autocomplete: "name"
+      .field-form
+        = form.label :email
+        %br/
+        = form.email_field :email, autofocus: true, autocomplete: "email"
+      .field-form
+        = form.label :password
+        - if @minimum_password_length
+          %em
+            (#{@minimum_password_length} characters minimum)
+        %br/
+        = form.password_field :password, autocomplete: "new-password"
+      
+      .field-form
+        = form.label :password_confirmation
+        %br/
+        = form.password_field :password_confirmation, autocomplete: "new-password"
+      .actions
+        = form.submit "登録してみる"
+    = render "devise/shared/links"

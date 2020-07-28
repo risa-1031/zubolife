@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   root "contents#index"
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :new,:create,:show]
   resources :groups, only: [:index, :new, :create, :edit, :update] do
     resources :contents do
       resources :comments, only: :create

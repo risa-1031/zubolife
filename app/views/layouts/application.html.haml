@@ -9,7 +9,7 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     - if user_signed_in?
-      = render 'contents/new'
+      = link_to "", 'new_group_path'
     - else
-      = link_to 'new_user_registration_path'
+      = link_to "",'new_user_registration_path'
     = yield
