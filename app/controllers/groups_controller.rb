@@ -1,8 +1,7 @@
 class GroupsController < ApplicationController
-  before_action: 
+  # before_action :set_group 
 
   def index
-
   end
 
   def new
@@ -13,7 +12,8 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to root_path, notice: 'グループを作成しました'
+      # @group = Group.find(params[:id])
+      redirect_to group_contents_path(@group.id), notice: 'グループを作成しました'
     else
       render :new
     end
@@ -36,4 +36,8 @@ class GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:name, user_ids: [])
   end
+
+  # def set_group
+  #   @group = Group.find(params[:group_id])
+  # end
 end

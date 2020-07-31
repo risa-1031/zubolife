@@ -1,11 +1,39 @@
-= form_with url: group_contents_path, local: true, method: :get, class: "search-form" do |form|
+-# = javascript_include_tag 'demo.js'
+
+- if user_signed_in?
+  .user_nav-grid-6
+    .user-info
+      = link_to "マイページ", '/users/#{current_user.id}'
+      = link_to "ログアウト", destroy_user_session_path, method: :delete
+    -# = link_to  "投稿する", 'new_tweet_path', class: "post"
+
+- else
+  = link_to  new_user_registration_path
+
+
+= form_with  local: true, method: :get, class: "search-form" do |form|
   = form.text_field :keyword, placeholder: "投稿を検索する", class: 'search-input'
   = form.submit "検索", class: 'search-btn'
 
+
+.footer
+  = form_with model: [@group, @content], local: true do |f|
+    .form-text
+      = f.text_field :text, class: 'text-input', placeholder: "食材を登録する"
+      = f.label :image, class: 'input-image' do
+        = icon('far', 'image', class: 'icon1')
+        = f.file_field :image, class: 'input-none'
+    = f.submit 'Send', class: 'send-put'
+
+-# = form_with local: true, method: :get, class: "t-form" do
+-#   = form.text_field :resipi, placeholder: "食材を登録する"
+-#   = form.submit "投稿する", class: 't-btn'
+
 .wrapper
-  - if current_user(:name)
-    = render "top"
-    = render "main"
-    = render "bottom"
-  - else
-    = render "top"
+  = render partial: "main", locals: { content: @content }
+  -# - if current_user
+  -#   = render "top"
+  -#   = render "main"
+  -#   = render "bottom"
+  -# - else
+  -#   = render "top"

@@ -2,30 +2,34 @@ class ContentsController < ApplicationController
   before_action :set_group
 
   def index
-    @group = Group.include(:user)
+    @content = Content.new
     @contents = Content.includes(:user).order("created_at DESC")
   end
 
   def new
     @content = Content.new
+    @group.users << current_user
   end
 
   def create
     @content = @group.contents.new(content_params)
-    if @content.save
-      respond_to do |format|
-        format.json
-      end
-    else
-      @contents = @group.contents.includes(:user)
-      flash.now[:alert] = 'メッセージを入力してください。'
-      render :index
-    end
+    @content.save
+    redirect_to group_contents_path
+    # if @content.save
+    #   respond_to do |format|
+    #     format.json
+    #   end
+    # else
+    #   @contents = @group.contents.includes(:user)
+    #   flash.now[:alert] = 'メッセージを入力してください。'
+    #   render :index
+    # end
   end
 
   def destroy
     content = Content.find(params[:id])
     content.destroy
+    redirect_to group_contents_path
   end
 
   def edit
@@ -37,10 +41,10 @@ class ContentsController < ApplicationController
     content.update(content_params)
   end
 
-  def show
-    @comment = Comment.new
-    @comments = @content.comments.includes(:user)
-  end
+  # def show
+  #   @comment = Comment.new
+  #   @comments = @content.comments.includes(:user)
+  # end
 
   def search
     @contents = Content.search(params[:keyword])
@@ -53,7 +57,7 @@ class ContentsController < ApplicationController
   private
 
   def content_params
-    params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
+    params.require(:content).permit(:text, :image).merge(user_id: current_user.id)
   end
 
   def set_group

@@ -6,11 +6,11 @@
       .field-form
         = form.label :name
         %br/
-        = form.text_field :name, autofocus: true, autocomplete: "name"
+        = form.text_field :name, autofocus: true, autocomplete: "名前"
       .field-form
         = form.label :email
         %br/
-        = form.email_field :email, autofocus: true, autocomplete: "email"
+        = form.email_field :email, autofocus: true, autocomplete: "アドレス"
       .field-form
         = form.label :password
         - if @minimum_password_length
