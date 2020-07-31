@@ -1,3 +1,5 @@
 .main
   .listbuy
-    .list
+    - @contents.each do |content|
+      .list
+        = render @content
