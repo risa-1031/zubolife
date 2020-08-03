@@ -3,8 +3,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   
   def after_sign_up_path_for(resource)
-    new_group_path
+    new_user_path
   end 
+
 
   def after_sign_in_path_for(resource)
     new_group_path

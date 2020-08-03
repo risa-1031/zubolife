@@ -1,5 +1,9 @@
 .main
   .listbuy
-    - @contents.each do |content|
-      .list
-        = render @content
+  - @contents.each do |content|
+    .list
+      .content_name
+        = content.text
+      .content_time
+        = content.created_at
+      -# = render @content

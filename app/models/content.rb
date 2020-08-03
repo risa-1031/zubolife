@@ -8,9 +8,9 @@ class Content < ApplicationRecord
 
   def self.search(search)
     if search
-      Tweet.where('text LIKE(?)', "%#{search}%")
+      Content.where('text LIKE(?)', "%#{search}%")
     else
-      Tweet.all
+      Content.all
     end
   end
 end
