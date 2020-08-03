@@ -2,6 +2,9 @@
   .listbuy
   - @contents.each do |content|
     .list
+      = link_to group_content_path(@group.id,content.id), method: :delete do
+        = image_tag 'arrow_top.png'
+        削除
       .content_name
         = content.text
       .content_time

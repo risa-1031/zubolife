@@ -25,21 +25,19 @@ class ContentsController < ApplicationController
   def create
     @content = @group.contents.new(content_params)
     @content.save
-    redirect_to group_contents_path
-    # if @content.save
     #   respond_to do |format|
     #     format.json
     #   end
-    # else
-    #   @contents = @group.contents.includes(:user)
-    #   flash.now[:alert] = 'メッセージを入力してください。'
-    #   render :index
     # end
+    redirect_to group_contents_path
   end
 
   def destroy
-    content = Content.find(params[:id])
-    content.destroy
+    @content = Content.find(params[:id])
+    @content.destroy
+    # respond_to do |format|
+    #   format.json
+    # end
     redirect_to group_contents_path
   end
 
@@ -60,7 +58,6 @@ class ContentsController < ApplicationController
   def search
     @contents = Content.search(params[:keyword])
     # respond_to do |format|
-    #   format.html
     #   format.json
     # end
   end

@@ -27,7 +27,7 @@
 
 
 .footer
-  = form_with model: [@group, @content], local: true do |f|
+  = form_with model: [@group, @content],remote: true, local: true do |f|
     .form-text
       = f.text_field :text, class: 'text-input', placeholder: "食材を登録する"
       = f.label :image, class: 'input-image' do
@@ -41,9 +41,3 @@
 
 .wrapper
   = render partial: "main", locals: { content: @content }
-  -# - if current_user
-  -#   = render "top"
-  -#   = render "main"
-  -#   = render "bottom"
-  -# - else
-  -#   = render "top"

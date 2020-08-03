@@ -1,6 +1,12 @@
 $(function(){
   function buildHTML(content){
-    if (content.image){
+    if (content.keyword){
+      let html =
+          `<div class="list">
+            ${content.text}
+          </div>`
+      return html;
+    } else if (content.image){
       let html = 
           `<div class="wrapper" >
             <div class= "main">
@@ -67,4 +73,19 @@ $(function(){
       $('.send-put').prop("disabled", false);
     });
   })
+  // $('a').on('click', function(e){
+  //   e.preventDefault();
+  //   $(this).parent(".list").remove();
+
+    // let formData = new FormData(this);
+    // let url = $(this).attr('action')
+    // $.ajax({
+    //   url: url,
+    //   type: 'get',
+    //   data: formData,  
+    //   dataType: 'json',
+    //   processData: false,
+    //   contentType: false
+  // })
+
 });
