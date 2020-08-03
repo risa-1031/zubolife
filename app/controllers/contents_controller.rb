@@ -1,9 +1,20 @@
 class ContentsController < ApplicationController
   before_action :set_group
+  before_action :move_to_index, except: [:index, :show, :search]
 
   def index
     @content = Content.new
-    @contents = Content.includes(:user).order("created_at DESC")
+    @contents = Content.includes(:text).order("created_at DESC")
+    if @content.save
+      respond_to do |format|
+        format.json
+      end
+    else
+      @contents = @group.contents.includes(:user)
+      flash.now[:alert] = 'メッセージを入力してください。'
+      render :index
+    end
+
   end
 
   def new
@@ -62,5 +73,11 @@ class ContentsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:group_id])
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 end

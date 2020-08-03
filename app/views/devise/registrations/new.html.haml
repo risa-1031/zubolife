@@ -1,7 +1,7 @@
 .sign-up-page
   %h2 登録してね
   = form_with model: @user do |form|
-    = render "devise/shared/error_messages", resource: resource
+    -# = devise_error_messages!
     .field
       .field-form
         = form.label :name
@@ -10,7 +10,7 @@
       .field-form
         = form.label :email
         %br/
-        = form.email_field :email, autofocus: true, autocomplete: "アドレス"
+        = form.email_field :email, autofocus: true, autocomplete: "email"
       .field-form
         = form.label :password
         - if @minimum_password_length
@@ -24,5 +24,4 @@
         %br/
         = form.password_field :password_confirmation, autocomplete: "new-password"
       .actions
-        = form.submit "登録してみる"
-    = render "devise/shared/links"
+        = form.submit "登録してみる", url: 'root_path'
