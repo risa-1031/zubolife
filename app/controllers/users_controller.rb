@@ -23,19 +23,19 @@ class UsersController < ApplicationController
 
   def create
     @users = @user
-    if 
-      redirect_to root_path
-    else
-      redirect_to new_user_registration_path
-    end
+    # if 
+    #   redirect_to root_path
+    # else
+    #   redirect_to new_user_registration_path
+    # end
   end
 
   def update
-    if current_user.update(user_params)
-      redirect_to new_group_path
-    else
-      redirect_to root_path
-    end
+    # if current_user.update(user_params)
+    #   redirect_to new_group_path
+    # else
+    #   redirect_to root_path
+    # end
   end
 
   # def show

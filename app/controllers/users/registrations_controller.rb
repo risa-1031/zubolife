@@ -2,40 +2,44 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   
-  def after_sign_up_path_for(resource)
-    new_group_path
-  end 
+  # def after_sign_up_path_for(resource)
+  #   new_group_path
+  # end 
 
 
-  def after_sign_in_path_for(resource)
-    new_group_path
-  end 
-  #ログアウト後のリダイレクト先
-  def after_sign_out_path_for(resource)
-    new_user_registration
-  end 
+  # def after_sign_in_path_for(resource)
+  #   new_group_path
+  # end 
+  # #ログアウト後のリダイレクト先
+  # def after_sign_out_path_for(resource)
+  #   new_user_registration
+  # end 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+    # redirect_to new_group_path
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    # redirect_to new_group_path
+  end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+    # redirect_to new_group_path
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    # redirect_to new_group_path
+  end
 
   # DELETE /resource
   # def destroy
