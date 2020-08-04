@@ -57,6 +57,8 @@ class ContentsController < ApplicationController
 
   def search
     @contents = Content.search(params[:keyword])
+    
+    redirect_to group_contents_path
     # respond_to do |format|
     #   format.json
     # end

@@ -1,29 +1,27 @@
 = javascript_pack_tag 'autoReload'
 
-- if user_signed_in?
-  .user_nav-grid-6
-    .user-info
-      
-      = link_to "ログアウト", destroy_user_session_path, method: :delete
-      = link_to "グループメンバー管理", new_group_path
+-# - if user_signed_in?
+.user_nav-grid-6
+  .user-info
+    = link_to "ログアウト", destroy_user_session_path, method: :delete
+    = link_to "グループメンバー管理", new_group_path
 
 
-- else
+-# - else
   = link_to  new_user_registration_path
 
 
-= form_with  local: true, method: :get, class: "search-form" do |form|
+= form_with url: search_group_contents_path , local: true, method: :get, class: "search-form" do |form|
   = form.text_field :keyword, placeholder: "投稿を検索する", class: 'search-input'
   = form.submit "検索", class: 'search-btn'
 
--# - if .search-info
+-# .search-info
 -# - @contents.each do |content|
 -#   .info-list
--#     = link_to group_content_path(@group.id,content.id), method: :search do
--#     .info_name
--#       = content.text
--#     .info_time
--#       = content.created_at
+-#   - binding.pry
+-#     = content.text
+  
+-#     = content.created_at
 
 
 .footer

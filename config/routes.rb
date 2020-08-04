@@ -7,11 +7,11 @@ Rails.application.routes.draw do
     get "sign_out", to: "users/sessions#destroy" 
   end
 
-  root "users#new"
+  root "groups#new"
   resources :users, only: [:index, :new, :create, :destroy]
   resources :groups, only: [:new, :create, :edit, :update] do
     resources :contents do
-      resources :comments, only: :create
+      # resources :comments, only: :create
       collection do
         get 'search'
       end
