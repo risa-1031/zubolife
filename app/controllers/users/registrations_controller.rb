@@ -25,7 +25,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    # super
+  # binding.pry
     # redirect_to new_group_path
   end
 

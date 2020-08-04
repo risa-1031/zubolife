@@ -22,7 +22,8 @@ class UsersController < ApplicationController
   # end
 
   def create
-    @users = @user
+    @user = User.create()
+    # @users = @user
     # if 
     #   redirect_to root_path
     # else
